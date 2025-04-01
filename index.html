@@ -1,82 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <meta charset="utf-8"/>
-        <style>
-            @keyframes bamm {
-                from {
-                    height: 550px;
-                } 
-                to {
-                    height: 400px;
-                }
-            }
-            body {
-                background-image: white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-                padding: 0;
-            }
-            body.thicc {
-                background-image: linear-gradient(180deg, red,orange,yellow);
-            }
-            .thicc-anim {
-                animation: bamm 0.5s normal;
-                animation-play-state: paused;
-                animation-timing-function: ease-out;
-            }
-            img {
-                height: 400px;
-            }
-        </style>
-    </head>
-    <body>
-        <img id="omni" class="thicc-anim" src="./img/omniman.png"/>
-        <audio id="intro_audio" src="audio/intro.mp3"></audio>
-        <audio id="bam_audio" src="audio/bam.mp3"></audio>
-        <script type="text/javascript">
-            let isPlayingBam = false;
-            let omniImg;
-            let introAudio;
-            let bamAudio;
-
-            function setImage(asset = "") {
-                omniImg.src = `./img/${asset}.png`;
-            }
-
-            window.onload = function() {
-                omniImg = document.getElementById("omni");
-                introAudio = document.getElementById("intro_audio");
-                bamAudio = document.getElementById("bam_audio");
-                introAudio.play();
-            }
-
-            document.addEventListener("visibilitychange", function() {
-                if (!document.hidden) {
-                    isPlayingBam = true;
-                    introAudio.pause();
-                    introAudio.currentTime = 0;
-                    bamAudio.pause();
-                    bamAudio.currentTime = 0;
-                    document.body.classList.add("thicc");
-                    omniImg.style.animationPlayState = "running"
-                    bamAudio.play();
-                    setImage("omnithicc")
-                    setTimeout(() => {
-                        omniImg.style.animationPlayState = "paused"
-                        document.body.classList.remove("thicc");
-                        omniImg.classList.remove("thicc-anim")
-                        void omniImg.offsetWidth;
-                        omniImg.classList.add("thicc-anim")
-                        setImage("omniman")
-                        isPlayingBam = false;
-                    }, 650);
-                }
-            })
-        </script>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omniman</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

@@ -1,0 +1,58 @@
+// Reset margin and padding for every element
+* {
+    margin: 0;
+    padding: 0;
+}
+
+// Main container variables
+$container-background-normal: white;
+$container-background-thicc: linear-gradient(180deg, red,orange,yellow);
+
+// Omniman image properties
+$omniman-height-normal: 60%;
+$omniman-padding-normal: 0%;
+$omniman-height-thicc: 80%;
+$omniman-padding-thicc: 10%;
+$omniman-animation-duration: 0.5s;
+
+
+// Main container where Omniman image is placed.
+// Background is changed when Omniman is THICC.
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+#container.normal {
+    background-image: $container-background-normal;
+}
+#container.thicc {
+    background-image: $container-background-thicc;
+}
+
+// Omniman's THICC animation
+@keyframes omniman-thicc-animation {
+    from {
+        height: $omniman-height-thicc;
+        padding-bottom: $omniman-padding-thicc;
+    }
+    to {
+        height: $omniman-height-normal;
+        padding-bottom: $omniman-padding-normal;
+    }
+}
+
+// Omniman 
+#omni_img.normal, #omni_img.thicc {
+    height: $omniman-height-normal;
+}
+#omni_img.normal {
+    cursor: pointer;
+}
+#omni_img.thicc {
+    animation: omniman-thicc-animation $omniman-animation-duration normal;
+    animation-timing-function: ease-out;
+    cursor: not-allowed;
+}
